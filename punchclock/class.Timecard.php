@@ -75,11 +75,11 @@ class Timecard {
 
         if ($this->begin_local_timestamp < $local_timestamp) {
             // Get previous record to timecard to see if employee is already signed in at beginning of the period.
-            $result = mysql_query($this->_query_prev_record($begin_utm_timestamp))
+            $result = mysqli_query($db, $this->_query_prev_record($begin_utm_timestamp))
             or trigger_error('Timecard->walk: no previous result: ' . mysql_error(), E_USER_WARNING);
 
-            if ($result && mysql_num_rows($result) > 0) {
-                $this->row = mysql_fetch_array($result);
+            if ($result && mysqli_num_rows($result) > 0) {
+                $this->row = mysqli_fetch_array($result);
                 if ($this->row['in_or_out'] == 1) {
                     $row_count++;
 
@@ -92,17 +92,17 @@ class Timecard {
                     if ($onBefore)
                         $onBefore($this);
                 }
-                mysql_free_result($result);
+                mysqli_free_result($result);
             }
         }
 
         // Get timecard entries.
         $query = $this->_query($begin_utm_timestamp, $end_utm_timestamp);
-        $result = mysql_query($query)
+        $result = mysqli_query($db, $query)
         or trigger_error('Timecard->walk: no result: ' . mysql_error(), E_USER_WARNING);
 
         // Process timecard entries.
-        while (($this->next_row = mysql_fetch_array($result))) {
+        while (($this->next_row = mysqli_fetch_array($result))) {
             $row_count++;
             $this->end_time = local_timestamp($this->next_row['timestamp']); // normalize timestamp to local time
             if ($row_count == 1) {
@@ -181,7 +181,7 @@ class Timecard {
                 $onAfter($this);
         }
 
-        mysql_free_result($result);
+        mysqli_free_result($result);
 
         return array($row_count, $this->total_hours, $this->overtime_hours, $this->today_hours);
     }

@@ -367,7 +367,7 @@ $weather_units = "c";
 
 
 $app_name = "PHP Timeclock";
-$app_version = "1.04";
+$app_version = "1.05";
 
 /* Sets the title in the header. This is what the page will be named by default when you
    make a "favorite" or "bookmark" in your browser. Change as you see fit. */

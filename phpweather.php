@@ -52,8 +52,8 @@ $cloud_condition_array = array(
 $weather_offset = 0;
 
 /* Make a connection to the MySQL database: */
-if (mysql_pconnect($db_hostname, $db_username, $db_password)) {
-    mysql_select_db($db_name);
+if ($db = mysqli_connect($db_hostname, $db_username, $db_password)) {
+    mysqli_select_db($db, $db_name);
 } else {
     echo "<p>Unable to connect to MySQL database!</p>";
 }
@@ -105,8 +105,8 @@ function get_metar($station, $always_use_cache = 0) {
     global $conn, $dbmMetar, $dbmTimestamp, $db_prefix;
 
     $query = "SELECT metar, UNIX_TIMESTAMP(timestamp) FROM " . $db_prefix . "metars WHERE station = '$station'";
-    $result = mysql_query($query);
-    @$metar_rows = mysql_num_rows($result); /* this suppresses a php error message if the metars db has not yet been created. */
+    $result = mysqli_query($db, $query);
+    @$metar_rows = mysqli_num_rows($result); /* this suppresses a php error message if the metars db has not yet been created. */
     if (isset($metar_rows)) { /* found station */
         list($metar, $timestamp) = mysql_fetch_row($result);
     }
@@ -193,7 +193,7 @@ function fetch_metar($station, $new) {
         $query = "UPDATE " . $db_prefix . "metars SET metar = '$metar', " .
                  "timestamp = '$date' WHERE station = '$station'";
     }
-    mysql_query($query);
+    mysqli_query($db, $query);
 
     return $metar;
 }

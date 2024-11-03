@@ -18,7 +18,7 @@ turn_off_magic_quotes();
 // Connect to db.
 $db = mysql_connect($db_hostname, $db_username, $db_password)
 or die("Could not connect to the database.");
-mysql_select_db($db_name);
+mysqli_select_db($db, $db_name);
 
 // Parse arguments.
 $emp = isset($_GET['emp']) ? $_GET['emp'] : null;
@@ -60,7 +60,7 @@ if ($authorized_to_post_time && isset($_POST['inout'])) {
 
     // Validate and get inout display color.
     $query = "select color from " . $db_prefix . "punchlist where punchitems = '$q_inout'";
-    $punchlist_result = mysql_query($query);
+    $punchlist_result = mysqli_query($db, $query);
     $inout_color = mysql_result($punchlist_result, 0, 0);
     if (!$inout_color) {
         #print error_msg("In/Out Status is not in the database.");
@@ -83,8 +83,8 @@ set tstamp = '$tz_stamp'
 where empfullname = '$q_empfullname'
 End_Of_SQL;
 
-    if (mysql_query($insert_query)) {
-        mysql_query($update_query)
+    if (mysqli_query($db, $insert_query)) {
+        mysqli_query($db, $update_query)
         or trigger_error('punchclock: cannot update tstamp in employee record. ' . mysql_error(), E_USER_WARNING);
     } else {
         trigger_error('punchclock: cannot insert timestamp into info record. ' . mysql_error(), E_USER_WARNING);
@@ -258,8 +258,8 @@ End_Of_HTML;
 
                     // query to produce buttons for punchlist items //
                     $query = "select punchitems,color,in_or_out from " . $db_prefix . "punchlist order by in_or_out desc, color, punchitems";
-                    $punchlist_result = mysql_query($query);
-                    while ($row = mysql_fetch_array($punchlist_result)) {
+                    $punchlist_result = mysqli_query($db, $query);
+                    while ($row = mysqli_fetch_array($punchlist_result)) {
                         $punchclass = $row['in_or_out'] ? 'punch-in' : 'punch-out';
                         ## Note: nyroModel plays with submit buttons so the following does not work.
                         ## The value of the submit button is not passed to the server. As a workaround
@@ -267,7 +267,7 @@ End_Of_HTML;
                         ##echo "<input type=\"submit\" name=\"inout\" value=\"{$row['punchitems']}\" class=\"$punchclass\" style=\"color:{$row['color']}\" />\n";
                         echo "<input type=\"submit\" value=\"{$row['punchitems']}\" class=\"$punchclass\" style=\"color:{$row['color']}\" onclick=\"this.form.inout.value=this.value;\" />\n";
                     }
-                    mysql_free_result($punchlist_result);
+                    mysqli_free_result($punchlist_result);
                     ?>
                 </td>
             </tr>

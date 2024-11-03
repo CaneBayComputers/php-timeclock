@@ -28,9 +28,9 @@ if ($request == 'POST') {
         if (isset($displayname)) {
             $displayname = addslashes($displayname);
             $query = "select displayname from " . $db_prefix . "employees where displayname = '" . $displayname . "'";
-            $emp_name_result = mysql_query($query);
+            $emp_name_result = mysqli_query($db, $query);
 
-            while ($row = mysql_fetch_array($emp_name_result)) {
+            while ($row = mysqli_fetch_array($emp_name_result)) {
                 $tmp_displayname = "" . $row['displayname'] . "";
             }
             if ((!isset($tmp_displayname)) && (!empty($displayname))) {
@@ -45,9 +45,9 @@ if ($request == 'POST') {
         if (isset($fullname)) {
             $fullname = addslashes($fullname);
             $query = "select empfullname from " . $db_prefix . "employees where empfullname = '" . $fullname . "'";
-            $emp_name_result = mysql_query($query);
+            $emp_name_result = mysqli_query($db, $query);
 
-            while ($row = mysql_fetch_array($emp_name_result)) {
+            while ($row = mysqli_fetch_array($emp_name_result)) {
                 $tmp_empfullname = "" . $row['empfullname'] . "";
             }
             if ((!isset($tmp_empfullname)) && (!empty($fullname))) {
@@ -76,7 +76,7 @@ if ($request == 'POST') {
     ob_end_flush();
 }
 
-if ($display_weather == 'yes') {
+if (false) {
 
     include 'phpweather.php';
     $metar = get_metar($metar);
@@ -258,11 +258,11 @@ echo "        <tr><td height=4 align=left valign=middle class=misc_items>\n";
 if ($show_display_name == "yes") {
 
     $query = "select displayname from " . $db_prefix . "employees where disabled <> '1'  and empfullname <> 'admin' order by displayname";
-    $emp_name_result = mysql_query($query);
+    $emp_name_result = mysqli_query($db, $query);
     echo "              <select name='left_displayname' tabindex=1>\n";
     echo "              <option value =''>...</option>\n";
 
-    while ($row = mysql_fetch_array($emp_name_result)) {
+    while ($row = mysqli_fetch_array($emp_name_result)) {
 
         $abc = stripslashes("" . $row['displayname'] . "");
 
@@ -275,17 +275,17 @@ if ($show_display_name == "yes") {
     }
 
     echo "              </select></td></tr>\n";
-    mysql_free_result($emp_name_result);
+    mysqli_free_result($emp_name_result);
     echo "        <tr><td height=7></td></tr>\n";
 
 } else {
 
     $query = "select empfullname from " . $db_prefix . "employees where disabled <> '1'  and empfullname <> 'admin' order by empfullname";
-    $emp_name_result = mysql_query($query);
+    $emp_name_result = mysqli_query($db, $query);
     echo "              <select name='left_fullname' tabindex=1>\n";
     echo "              <option value =''>...</option>\n";
 
-    while ($row = mysql_fetch_array($emp_name_result)) {
+    while ($row = mysqli_fetch_array($emp_name_result)) {
 
         $def = stripslashes("" . $row['empfullname'] . "");
         if ((isset($_COOKIE['remember_me'])) && (stripslashes($_COOKIE['remember_me']) == $def)) {
@@ -297,7 +297,7 @@ if ($show_display_name == "yes") {
     }
 
     echo "              </select></td></tr>\n";
-    mysql_free_result($emp_name_result);
+    mysqli_free_result($emp_name_result);
     echo "        <tr><td height=7></td></tr>\n";
 }
 
@@ -316,17 +316,17 @@ echo "        <tr><td height=4 align=left valign=middle class=misc_items>\n";
 // query to populate dropdown with punchlist items //
 
 $query = "select punchitems from " . $db_prefix . "punchlist";
-$punchlist_result = mysql_query($query);
+$punchlist_result = mysqli_query($db, $query);
 
 echo "              <select name='left_inout' tabindex=3>\n";
 echo "              <option value =''>...</option>\n";
 
-while ($row = mysql_fetch_array($punchlist_result)) {
+while ($row = mysqli_fetch_array($punchlist_result)) {
     echo "              <option>" . $row['punchitems'] . "</option>\n";
 }
 
 echo "              </select></td></tr>\n";
-mysql_free_result($punchlist_result);
+mysqli_free_result($punchlist_result);
 
 echo "        <tr><td height=7></td></tr>\n";
 echo "        <tr><td height=4 align=left valign=middle class=misc_items>Notes:</td></tr>\n";
@@ -349,7 +349,7 @@ echo "        <tr><td height=7></td></tr>\n";
 echo "        <tr><td height=4 align=left valign=middle class=misc_items><input type='submit' name='submit_button' value='Submit' align='center' 
                 tabindex=6></td></tr></form>\n";
 
-if ($display_weather == "yes") {
+if (false) {
     echo "        <tr><td height=25 align=left valign=bottom class=misc_items><font color='00589C'><b><u>Weather Conditions:</u></b></font></td></tr>\n";
     echo "        <tr><td height=7></td></tr>\n";
     echo "        <tr><td align=left valign=middle class=misc_items><b>$city</b></td></tr>\n";
@@ -392,9 +392,9 @@ if ($request == 'POST') {
     }
 
     $query = "select punchitems from " . $db_prefix . "punchlist";
-    $punchlist_result = mysql_query($query);
+    $punchlist_result = mysqli_query($db, $query);
 
-    while ($row = mysql_fetch_array($punchlist_result)) {
+    while ($row = mysqli_fetch_array($punchlist_result)) {
         $tmp_inout = "" . $row['punchitems'] . "";
     }
 
@@ -474,9 +474,9 @@ if ($request == 'POST') {
         if ($show_display_name == "yes") {
 
             $sel_query = "select empfullname from " . $db_prefix . "employees where displayname = '" . $displayname . "'";
-            $sel_result = mysql_query($sel_query);
+            $sel_result = mysqli_query($db, $sel_query);
 
-            while ($row = mysql_fetch_array($sel_result)) {
+            while ($row = mysqli_fetch_array($sel_result)) {
                 $fullname = stripslashes("" . $row["empfullname"] . "");
                 $fullname = addslashes($fullname);
             }
@@ -490,10 +490,10 @@ if ($request == 'POST') {
                       '" . $notes . "')";
         }
 
-        $result = mysql_query($query);
+        $result = mysqli_query($db, $query);
 
         $update_query = "update " . $db_prefix . "employees set tstamp = UNIX_TIMESTAMP() where empfullname = '" . $fullname . "'";
-        $other_result = mysql_query($update_query);
+        $other_result = mysqli_query($db, $update_query);
 
         echo "<head>\n";
         echo "<meta http-equiv='refresh' content=0;url=index.php>\n";
@@ -503,9 +503,9 @@ if ($request == 'POST') {
 
         if ($show_display_name == "yes") {
             $sel_query = "select empfullname, employee_passwd from " . $db_prefix . "employees where displayname = '" . $displayname . "'";
-            $sel_result = mysql_query($sel_query);
+            $sel_result = mysqli_query($db, $sel_query);
 
-            while ($row = mysql_fetch_array($sel_result)) {
+            while ($row = mysqli_fetch_array($sel_result)) {
                 $tmp_password = "" . $row["employee_passwd"] . "";
                 $fullname = "" . $row["empfullname"] . "";
             }
@@ -516,9 +516,9 @@ if ($request == 'POST') {
         } else {
 
             $sel_query = "select empfullname, employee_passwd from " . $db_prefix . "employees where empfullname = '" . $fullname . "'";
-            $sel_result = mysql_query($sel_query);
+            $sel_result = mysqli_query($db, $sel_query);
 
-            while ($row = mysql_fetch_array($sel_result)) {
+            while ($row = mysqli_fetch_array($sel_result)) {
                 $tmp_password = "" . $row["employee_passwd"] . "";
             }
 
@@ -534,10 +534,10 @@ if ($request == 'POST') {
                       '" . $notes . "')";
             }
 
-            $result = mysql_query($query);
+            $result = mysqli_query($db, $query);
 
             $update_query = "update " . $db_prefix . "employees set tstamp = UNIX_TIMESTAMP() where empfullname = '" . $fullname . "'";
-            $other_result = mysql_query($update_query);
+            $other_result = mysqli_query($db, $update_query);
 
             echo "<head>\n";
             echo "<meta http-equiv='refresh' content=0;url=index.php>\n";

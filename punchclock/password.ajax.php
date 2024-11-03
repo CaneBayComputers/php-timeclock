@@ -16,7 +16,7 @@ turn_off_magic_quotes();
 // Connect to db.
 $db = mysql_connect($db_hostname, $db_username, $db_password)
 or die("Could not connect to the database.");
-mysql_select_db($db_name);
+mysqli_select_db($db, $db_name);
 
 // Parse arguments
 $change_password = isset($_GET['change_password']) ? true : false;
