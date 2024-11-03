@@ -162,7 +162,7 @@ $display_current_users = "no";
 /* Show a Display Name instead of a Username for each user on the main page.
    Default is "no". */
 
-$show_display_name = "no";
+$show_display_name = "yes";
 
 
 /* Display punch-in/out times for only a certain office on the main page of the application.
@@ -336,7 +336,7 @@ $use_server_tz = "no";
 /* Include local weather info on the left side of the main page just below the Submit button.
    If you would like to include this feature, set $display_weather to "yes". Default is "no". */
 
-$display_weather = "yes";
+$display_weather = "no";
 
 
 /* ICAO (International Civil Aviation Organization) for your local airport. This is the

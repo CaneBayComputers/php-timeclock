@@ -307,4 +307,10 @@ function setTimeZone() {
     }
 }
 
+if (!function_exists('get_magic_quotes_gpc')) {
+    function get_magic_quotes_gpc() {
+        return false; // or return true if you need to simulate the behavior
+    }
+}
+
 ?>
