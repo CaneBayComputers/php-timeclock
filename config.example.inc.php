@@ -287,7 +287,7 @@ $username_dropdown_only = "no";
 /* Choose whether to print displaynames or usernames for each user when reports are run.
    Options for this variable are "user" and "display". Default is "user". */
 
-$user_or_display = "user";
+$user_or_display = "display";
 
 
 /* Choose whether to include in the reports the ip addresses of the systems that connect to 
@@ -378,4 +378,8 @@ $title = "$app_name $app_version";
 /* --- DO NOT CHANGE ANYTHING BELOW THIS LINE!!! --- */
 
 $dbversion = "1.4";
+
+/* In some scripts this doesn't exist. Here to make sure variable exists */
+$tzo = 0;
+
 ?>
