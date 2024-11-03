@@ -313,7 +313,7 @@ $export_csv = "no";
    info is pulled from the web browser of the user via javascript and stored in a cookie on their
    system. The default setting is "no". */
 
-$use_client_tz = "no";
+$use_client_tz = "yes";
 
 
 /* To display the punch-in/out times in the timezone of the web server, leave this option set
@@ -327,7 +327,7 @@ $use_server_tz = "no";
 
 /* If you are using PHP 5.1+ and do not have access to change your php.ini config file then
    uncomment the following line and change it to the correct time zone. */
-//date_default_timezone_set("America/St_Johns");
+date_default_timezone_set("America/New_York");
 
 
 /* --- WEATHER INFO ---  */
