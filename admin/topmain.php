@@ -25,18 +25,14 @@ if (($dbexists <> "1") || (@$my_dbversion <> $dbversion)) {
 
 if ($date_link == "none") {
     if ($use_client_tz == "yes") {
-        echo "    <td class=notprint valign=middle align=right style='font-size:9px;'>
-      <p>If the times below appear to be an hour off, click <a href='../resetcookie.php' style='font-size:9px;'>here</a> to reset.<br />
-         If that doesn't work, restart your web browser and reset again.</p></td>\n";
+        echo "    <td class=notprint valign=middle align=right style='font-size:9px;'></td>\n";
     }
     echo "    <td colspan=2 scope=col align=right valign=middle><a style='color:#000000;font-family:Tahoma;font-size:10pt;text-decoration:none;'>";
 
 } else {
 
     if ($use_client_tz == "yes") {
-        echo "    <td class=notprint valign=middle align=right style='font-size:9px;'>
-      <p>If the times below appear to be an hour off, click <a href='../resetcookie.php' style='font-size:9px;'>here</a> to reset.<br />
-        If that doesn't work, restart your web browser and reset again.</p></td>\n";
+        echo "    <td class=notprint valign=middle align=right style='font-size:9px;'></td>\n";
     }
     echo "    <td colspan=2 scope=col align=right valign=middle><a href='$date_link' style='color:#000000;font-family:Tahoma;font-size:10pt;
         text-decoration:none;'>";
