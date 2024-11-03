@@ -161,7 +161,7 @@ if ($request == 'GET') {
         (($post_disabled != '1') && (!empty($post_disabled))) || (!empty($string)) || (!empty($string2))
     ) {
 
-        if (@tmp_username == $post_username) {
+        if (@$tmp_username == $post_username) {
             $tmp_username = stripslashes($tmp_username);
         }
 
