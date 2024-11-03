@@ -1,4 +1,9 @@
+<?php echo <<<SCRIPT
+
 <script language="JavaScript">
+
+SCRIPT;
+?>
 
     function office_names() {
 

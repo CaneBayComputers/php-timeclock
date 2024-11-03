@@ -8,7 +8,7 @@ if(file_exists(__DIR__ . '/../css/override.css') )
 echo "<script type=\"text/javascript\" src=\"../scripts/CalendarPopup.js\"></script>\n";
 echo "<script language=\"javascript\">document.write(getCalendarStyles());</script>\n";
 echo "<script language=\"javascript\" src=\"../scripts/pnguin.js\"></script>\n";
-include '../scripts/dropdown_get.php';
+//include '../scripts/dropdown_get.php';
 echo "</head>\n";
 
 setTimeZone();
