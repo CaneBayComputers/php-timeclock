@@ -1,6 +1,4 @@
-Here's an updated version with a quirky intro added:
-
----
+![License: LGPL](https://img.shields.io/badge/License-LGPL-blue.svg)
 
 # PHP Timeclock Project
 
@@ -43,6 +41,4 @@ PHP Timeclock is a simple yet effective web-based timeclock system designed to t
 ## Notes
 - No changes were made to the database schema, so existing PHP Timeclock databases will work with this version.
 - The weather feature has been removed for improved performance and reliability.
-- Existing PHP Timeclock databases will have to have timestamps changed out to UTC.
-
-![License: LGPL](https://img.shields.io/badge/License-LGPL-blue.svg)
+- Existing PHP Timeclock databases will need timestamps converted to UTC.
