@@ -50,7 +50,7 @@ if ($request == 'GET') {
 
     $get_user = stripslashes($_GET['username']);
 
-    disabled_acct($get_user);
+    disabled_acct($db, $get_user);
 
     echo "<table width=100% height=89% border=0 cellpadding=0 cellspacing=1>\n";
     echo "  <tr valign=top>\n";

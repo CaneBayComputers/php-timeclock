@@ -1,9 +1,4 @@
-<?php echo <<<SCRIPT
-
 <script language="JavaScript">
-
-SCRIPT;
-?>
 
     function office_names() {
 
@@ -30,7 +25,6 @@ SCRIPT;
           }
           $cnt++;
         }
-        mysqli_free_result($result);
         ?>
     }
 
@@ -78,8 +72,6 @@ SCRIPT;
         }
         <?php
         }
-        mysqli_free_result($result);
-        mysqli_free_result($result2);
         ?>
         if (users_select.options[users_select.selectedIndex].value != 'All') {
             users_select.length = 0;
@@ -154,9 +146,6 @@ SCRIPT;
         }
         <?php
         }// ends while $row for offices
-        mysqli_free_result($result);
-        mysqli_free_result($result2);
-        mysqli_free_result($result3);
         ?>
         if (groups_select.options[groups_select.selectedIndex].value == 'All') {
             <?php

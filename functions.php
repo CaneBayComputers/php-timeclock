@@ -81,7 +81,7 @@ function secsToHours($secs, $round_time) {
     return number_format($hours, 2);
 }
 
-function disabled_acct($get_user) {
+function disabled_acct($db, $get_user) {
 
     $query = "select empfullname, disabled from employees where empfullname = '" . addslashes($get_user) . "'";
     $result = mysqli_query($db, $query);
